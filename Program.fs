@@ -2,7 +2,7 @@
 
 open System
 
-let board =
+let initialBoard =
     Map.empty.
         Add("A1", "wc1").
         Add("A2", "wp1").
@@ -71,10 +71,16 @@ let board =
 
 let visualizeBoard board =
     let line = "_________________"
+    let columns = "| | | | | | | | |"
+
+    board |> List.map
+
+    let column_A = []
+
     let whiteStarterBackRow = "|c|k|b|Q|K|b|k|c|"
     let blackStarterBackRow = "|c|k|b|Q|K|b|k|c|"
     let pawnStarterRow = "|p|p|p|p|p|p|p|p|"
-    let columns = "| | | | | | | | |"
+
     [line;whiteStarterBackRow;line;pawnStarterRow;line;columns;line;columns;line;pawnStarterRow;line;blackStarterBackRow;line]
 
 let printBoard board =
@@ -82,6 +88,10 @@ let printBoard board =
 
 [<EntryPoint>]
 let main argv = 
-    printfn "%A" board
+    // pfft for loops
+    // for KeyValue(k,v) in initialBoard do
+    //     printfn "board coord is: %s, piece present is %s" k v
+    initialBoard |> Map.iter (fun key value ->
+        printfn "Key: %A, Val: %A" key value)
     0 // return an integer exit code
 
