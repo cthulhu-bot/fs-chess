@@ -2,6 +2,7 @@
 
 open System
 
+// Treat the board like state and have actions reduce the existing board state and the action resulting in a new board state
 let state = initialBoard
 
 let initialBoard =
