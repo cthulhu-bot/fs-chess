@@ -2,6 +2,8 @@
 
 open System
 
+let state = initialBoard
+
 let initialBoard =
     Map.empty.
         Add("A1", "wc1").
