@@ -85,11 +85,27 @@ module Visualization =
         let line = "_________________"
         let columns = "| | | | | | | | |"
 
+        let boardViz2 board =
+            let mutable formattedBoard = ""
+            for i = 0 to 7 do
+                let boardSeq = seq { for a in board do yield a }
+                let slice = Seq.skip (8*i) boardSeq
+                let column = Seq.take 8 slice
+                let mutable formattedColumn = ""
+                printfn "%A" column
+                // for j = 0 to 7 do
+                //     let columnSlice = Seq.skip (8*j) column
+                //     let piece = Seq.take 1 columnSlice
+                    // formattedColumn <- String.concat "" ["|"; piece]
+                formattedBoard <- String.concat "" ["|\n"; formattedColumn]
+                // foo = String.Format("|{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}|" column.)
+            formattedBoard
+
         let boardViz board =
             let delimiters = List.map (fun (coord:Board.coord) -> 
                                 match coord.Piece with
-                                | "" -> "| |"
-                                | _ -> String.concat "" ["|"; coord.Piece; "|"]) board
+                                | "" -> "| "
+                                | _ -> String.concat "" ["|"; coord.Piece]) board
             let boardSeq = seq { for a in delimiters do yield a }
             for i = 0 to 7 do
                 let slice = Seq.skip (8 * i) boardSeq 
@@ -103,7 +119,7 @@ module Visualization =
         let blackStarterBackRow = "|c|k|b|Q|K|b|k|c|"
         let pawnStarterRow = "|p|p|p|p|p|p|p|p|"
 
-        boardViz board
+        boardViz2 board
 
 
 
