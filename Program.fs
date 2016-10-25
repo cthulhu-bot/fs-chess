@@ -92,10 +92,10 @@ module Visualization =
                 let slice = Seq.skip (8*i) boardSeq
                 let column = Seq.take 8 slice
                 let mutable formattedColumn = ""
-                printfn "%A" column
-                // for j = 0 to 7 do
-                //     let columnSlice = Seq.skip (8*j) column
-                //     let piece = Seq.take 1 columnSlice
+                for j = 0 to 7 do
+                    let columnSlice = Seq.skip j column
+                    let coordinate = Seq.take 1 columnSlice
+                    printfn "Coordinate: %A" coordinate
                     // formattedColumn <- String.concat "" ["|"; piece]
                 formattedBoard <- String.concat "" ["|\n"; formattedColumn]
                 // foo = String.Format("|{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}|" column.)
