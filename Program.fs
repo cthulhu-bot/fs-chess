@@ -83,7 +83,7 @@ module Moves =
 module Visualization =
     let printCoord coord = Seq.iter (printf "%A") coord; printfn ""
     let visualizeBoard board =
-        let line = "_________________"
+        let line = "_________________________"
         let columns = "| | | | | | | | |"
         let whiteStarterBackRow = "|c|k|b|Q|K|b|k|c|"
         let blackStarterBackRow = "|c|k|b|Q|K|b|k|c|"
@@ -96,15 +96,19 @@ module Visualization =
         // Change acc to be a list of 8 strings (each string a line)
         // Will need to invert these returned lines somewhere because they are actually columns
         let rec buildBoard (board:list<Board.coord>) (acc:string) =
+            let bar = printfn "%A" line
             let acc = if board.Length = 8 then line else ""
-            let first8 = board |> List.take 8
-            let first8Lines = first8 |> List.map buildLine
-            let first8Viz = first8Lines |> List.fold (+) ""
+            let first8Lines = board |> List.take 8
+            let first8Coords = first8Lines |> List.map buildLine
+            let first8Viz = first8Coords |> List.fold (+) ""
             let first8Viz2 = first8Viz + "|"
             let rest = board.[8..]
             let foo = printfn "%A" first8Viz2
             
-            if List.isEmpty board then (buildBoard rest acc) else first8Viz2
+            if List.isEmpty rest then (
+                let baz = printfn "%A" line
+                first8Viz2) 
+            else (buildBoard rest acc)
 
         let boardViz3 board =
             let boardViz =
