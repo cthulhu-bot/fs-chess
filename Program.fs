@@ -78,10 +78,16 @@ module Board =
 module Moves =
     type move = {Coord1:String; Coord2:String}
 
+    let findCoord (board:list<Board.coord>) (coord:string) =
+        null
+
+    let movePiece (piece:string) (newCoord:string) =
+        // Return new state of the entire board
+        null
+
 
 // Board visualization code
 module Visualization =
-    let printCoord coord = Seq.iter (printf "%A") coord; printfn ""
     let visualizeBoard board =
         let line = "_____________________________"
         let buildLine (coordinate:Board.coord) =
